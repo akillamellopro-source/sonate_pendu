@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<title>Jeu du Pendu</title>
+
+<h1>Partie du Pendu</h1>
+<p>Joueur : {{ nom }}</p>
+<p>Vies restantes : {{ vies }}</p>
+<p>{{ mot_indice}} </p>
+
+<form method="post">
+    {% for lettre in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+        <button type="submit" name="lettre" value="{{ lettre }}"></button>
+    {% endfor %}
+</form>
