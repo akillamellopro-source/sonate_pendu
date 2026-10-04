@@ -86,7 +86,14 @@ def home():
         session["vies"] = 5
         session["lettres_trouvees"] = []
         session["lettres_jouees"] = []
-        return render_template("jeu.html", nom=session["nom"], mot_indice=mot_indice, vies=session["vies"])
+        return render_template(
+            "jeu.html",
+            nom=session["nom"],
+            mot_indice=mot_indice,
+            vies=session["vies"],
+            lettre_jouees=session["lettres_jouees"],
+            dessin=pendu[0]
+            )
     
     return render_template("hello.html")
       

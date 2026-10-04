@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <title>Jeu du Pendu</title>
-<h1>Bienvenue dans le jeu du Pendu !</h1>
-<form method="post">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<div class="jeu-container">
+
+<h1 class="titre-jeu">LE PENDU !</h1>
+<form class="formulaire-accueil" method="post">
     <input type="text" name="nom" placeholder="Entrez votre nom" required>
     <button type="submit">Démarrer</button> 
 </form>
+</div>

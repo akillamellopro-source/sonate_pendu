@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <title>Victoire - Jeu du Pendu</title>
-<h1>Gagné</h1>
-<p>Félicitation {{ nom }}</p>
-<p>Le mot était :{{ mot }}</p>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-<a href="/">Nouvelle partie</a>
+<div class="jeu-container">
+<h1 class="titre-jeu">VICTOIRE</h1>
+<p class="message">Félicitations <strong>{{ nom }}</strong> !</p>
+<p class="mot-indice">{{ mot }}</p>
+
+<a class="bouton-nouvelle-partie" href="/">Nouvelle partie</a>
+</div>

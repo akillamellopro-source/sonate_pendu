@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <title>Défaite - Jeu du Pendu</title>
 
-<h1>Perdu !</h1>
-<p>Vous n'avez plus de vies.</p>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<div class="jeu-container">
 
-<pre>{{ dessin }}</pre>
+<h1 class="titre-jeu">Défaite</h1>
+<p class="message">Vous n'avez plus de vies.</p>
 
-<p>Le mot était {{ mot }}</p>
+<div class="zone-pendu">
+    <pre>{{ dessin }}</pre>
+</div>
 
-<a href="/">Nouvelle partie</a>
+<p class="mot-indice">{{ mot }}</p>
+
+<a class="bouton-nouvelle-partie" href="/">Nouvelle partie</a>
+</div>

@@ -6,16 +6,28 @@
 
 <h1 class="titre-jeu">Partie du Pendu</h1>
 <p class="joueur">Joueur : {{ nom }}</strong></p>
-<p class="vies">Vies restantes : <strong>{{ vies }}</strong> / 5</p>
-<p>{{message}}</p>
-<p>{{ mot_indice}} </p>
-<pre>{{ dessin }}</pre>
+<p class="vies">Vies restantes :
+<span class="coeurs">
+    {% for i in range(vies) %}
+        ♥
+    {% endfor %}
+</span>
+</p>
+<p class="message">{{message}}</p>
+<p class="mot-indice">{{ mot_indice}} </p>
 
-<form method="post" action="/jeu">
+<div class="zone-pendu" id="jeu">
+    <pre>{{ dessin }}</pre>
+</div>
+
+<h2 class="titre-clavier">CHOISIS UNE LETTRE</h2>
+
+<form class="clavier" method="post" action="/jeu#jeu">
     {% for lettre in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
         {% if lettre not in lettres_jouees %}
             <button type="submit" name="lettre" value="{{ lettre }}">{{ lettre }}</button>
         {% endif %}
     {% endfor %}
+    
 </form>
 </div>

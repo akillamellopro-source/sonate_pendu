@@ -36,6 +36,7 @@ body {
 }
 
 .vies {
+    text-align: center;
     display: inline-blocks;
     padding: 10px 18px;
     margin-left: 15px;
@@ -43,4 +44,130 @@ body {
     border: 1px solid #6e5630;
     border-radius: 6px;
     color: #c9b78f;
+}
+
+.mot-indice {
+    text-align: center;
+    font-size: 38px;
+    letter-spacing: 8px;
+    color: #f2e6c9;
+    background-color: #211b29;
+    border: 1px solid #8a6a32;
+    border-radius: 8px;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+.message {
+    text-align: center;
+    font-size: 18px;
+    font-style: italic;
+    color: #bfa76f;
+    min-height: 22px;
+}
+
+.zone-pendu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 190px;
+    margin: 20px 0;
+    background-color: #17131d;
+    border: 1px solid #4f3e28;
+    border-radius: 8px;
+}
+
+.zone-pendu pre {
+    font-size: 20px;
+    line-height: 1.1;
+    color: #d4af62;
+    margin: 0;
+}
+
+.clavier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    max-width: 700px;
+    margin: 25px auto;
+}
+
+.clavier button {
+    width: 48px;
+    height: 48px;
+    background-color: #241e2d;
+    color: #d4af62;
+    border: 1px solid #8a6a32;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.clavier button:hover {
+    background-color: #8a6a32;
+    color: #17131d;
+    transform: translateY(-2px);
+}
+
+.titre-clavier {
+    text-align: center;
+    color: #c9b78f;
+    font-size: 16px;
+    letter-spacing: 3px;
+    font-weight: normal;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.coeurs {
+    color: #b84aba;
+    font-size: 22px;
+    margin-left: 10px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 8px rgba(184, 74, 74, 0.4);
+}
+
+.bouton-nouvelle-partie {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+    padding: 12px 24px;
+    background-color: #241e2d;
+    color: #d4af62;
+    border: 1px solid #8a6a32;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.formulaire-accueil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 30px auto;
+}
+
+.formulaire-accueil input {
+    width: 280px;
+    padding: 12px 15px;
+    background-color: #17131d;
+    color: #f2e6c9;
+    border: 1px solid #8a6a32;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.formulaire-accueil button {
+    padding: 12px 28px;
+    background-color: #241e2d;
+    color: #d4af62;
+    border: 1px solid #8a6a32;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
