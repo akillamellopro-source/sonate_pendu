@@ -3,6 +3,61 @@ from flask import Flask, render_template, request, session
 
 app = Flask(__name__)
 app.secret_key = "pendu_secret"
+pendu = [
+    """
+ +---+
+ |   |
+     |
+     |
+     |
+     |
+=======""",
+
+    """
+ +---+
+ |   |
+ O   |
+     |
+     |
+     |
+=======""",
+
+    """
+ +---+
+ |   |
+ O   |
+ |   |
+     |
+     |
+=======""",
+
+    """
+ +---+
+ |   |
+ O   |
+/|   |
+     |
+     |
+=======""",
+
+    """
+ +---+
+ |   |
+ O   |
+/|\\  |
+/    |
+     |
+=======""",
+
+    """
+ +---+
+ |   |
+ O   |
+/|\\  |
+/ \\  |
+     |
+======="""
+]
 
 with open("dictionnaire.txt", "r", encoding="utf-8") as fichier:
     mots = fichier.read().splitlines()
@@ -40,7 +95,11 @@ def jeu():
         session["vies"] -=1
 
         if session["vies"] == 0:
-            return render_template("perdu.html", mot=session["mot"])
+            return render_template(
+                "perdu.html",
+                  mot=session["mot"],
+                  dessin=pendu[5]
+                  )
 
     mot_indice = ""
 
@@ -51,7 +110,11 @@ def jeu():
             mot_indice += "_ "
 
     if "_" not in mot_indice:
-        return "Gagné !"
+        return render_template(
+            "gagne.html",
+            nom=session["nom"],
+            mot=session["mot"]
+        )
 
     return render_template(
         "jeu.html",
@@ -59,6 +122,7 @@ def jeu():
         mot_indice=mot_indice,
         vies=session["vies"],
         message=message,
-        lettres_jouees=session["lettres_jouees"]
+        lettres_jouees=session["lettres_jouees"],
+        dessin=pendu[5 - session["vies"]],
     )
    
