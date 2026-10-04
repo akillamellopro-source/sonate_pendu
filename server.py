@@ -1,4 +1,5 @@
 import random
+import unicodedata
 from flask import Flask, render_template, request, session
 
 app = Flask(__name__)
@@ -59,6 +60,13 @@ pendu = [
 ======="""
 ]
 
+def sans_accent(texte):
+    texte = unicodedata.normalize("NFD", texte)
+    return "".join(
+        caractere for caractere in texte
+        if unicodedata.category(caractere) != "Mn"
+    )
+
 with open("dictionnaire.txt", "r", encoding="utf-8") as fichier:
     mots = fichier.read().splitlines()
 
@@ -67,8 +75,14 @@ with open("dictionnaire.txt", "r", encoding="utf-8") as fichier:
 def home():
     if request.method == "POST":
         session["nom"] = request.form["nom"]
-        session["mot"] = random.choice(mots).split(";")[0] 
-        mot_indice = "_ " * len(session["mot"])
+        session["mot"] = random.choice(mots).split(";")[0]
+        mot_indice = ""
+
+        for caractere in session["mot"]:
+            if caractere == "'":
+                mot_indice += "' "
+            else:
+                mot_indice += "_ "
         session["vies"] = 5
         session["lettres_trouvees"] = []
         session["lettres_jouees"] = []
@@ -84,7 +98,7 @@ def jeu():
     lettres_jouees.append(lettre)
     session["lettres_jouees"] = lettres_jouees
 
-    if lettre in session["mot"].upper():
+    if lettre in sans_accent(session["mot"]).upper():
         message = "Bonne lettre"
 
         lettres_trouvees = session["lettres_trouvees"]
@@ -104,8 +118,10 @@ def jeu():
     mot_indice = ""
 
     for caractere in session["mot"]:
-        if caractere.upper() in session["lettres_trouvees"]:
-            mot_indice += caractere +" "
+        if caractere == "'":
+            mot_indice += "' "
+        elif sans_accent(caractere).upper() in session["lettres_trouvees"]:
+            mot_indice += caractere + " "
         else:
             mot_indice += "_ "
 
