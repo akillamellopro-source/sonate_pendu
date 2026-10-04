@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <title>Jeu du Pendu</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-<h1>Partie du Pendu</h1>
-<p>Joueur : {{ nom }}</p>
-<p>Vies restantes : {{ vies }}</p>
+<div class="jeu-container">
+
+<h1 class="titre-jeu">Partie du Pendu</h1>
+<p class="joueur">Joueur : {{ nom }}</strong></p>
+<p class="vies">Vies restantes : <strong>{{ vies }}</strong> / 5</p>
 <p>{{message}}</p>
 <p>{{ mot_indice}} </p>
 <pre>{{ dessin }}</pre>
@@ -15,3 +18,4 @@
         {% endif %}
     {% endfor %}
 </form>
+</div>
