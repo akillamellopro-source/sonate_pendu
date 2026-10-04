@@ -4,10 +4,13 @@
 <h1>Partie du Pendu</h1>
 <p>Joueur : {{ nom }}</p>
 <p>Vies restantes : {{ vies }}</p>
+<p>{{message}}</p>
 <p>{{ mot_indice}} </p>
 
-<form method="post">
+<form method="post" action="/jeu">
     {% for lettre in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
-        <button type="submit" name="lettre" value="{{ lettre }}"></button>
+        {% if lettre not in lettres_jouees %}
+            <button type="submit" name="lettre" value="{{ lettre }}">{{ lettre }}</button>
+        {% endif %}
     {% endfor %}
 </form>

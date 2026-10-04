@@ -15,6 +15,50 @@ def home():
         session["mot"] = random.choice(mots).split(";")[0] 
         mot_indice = "_ " * len(session["mot"])
         session["vies"] = 5
+        session["lettres_trouvees"] = []
+        session["lettres_jouees"] = []
         return render_template("jeu.html", nom=session["nom"], mot_indice=mot_indice, vies=session["vies"])
-        
+    
     return render_template("hello.html")
+      
+@app.route("/jeu", methods=["POST"])
+def jeu():
+    lettre = request.form["lettre"]
+
+    lettres_jouees = session["lettres_jouees"]
+    lettres_jouees.append(lettre)
+    session["lettres_jouees"] = lettres_jouees
+
+    if lettre in session["mot"].upper():
+        message = "Bonne lettre"
+
+        lettres_trouvees = session["lettres_trouvees"]
+        lettres_trouvees.append(lettre)
+        session["lettres_trouvees"] = lettres_trouvees
+    else:
+        message = "Mauvaise lettre"
+        session["vies"] -=1
+
+        if session["vies"] == 0:
+            return render_template("perdu.html", mot=session["mot"])
+
+    mot_indice = ""
+
+    for caractere in session["mot"]:
+        if caractere.upper() in session["lettres_trouvees"]:
+            mot_indice += caractere +" "
+        else:
+            mot_indice += "_ "
+
+    if "_" not in mot_indice:
+        return "Gagné !"
+
+    return render_template(
+        "jeu.html",
+        nom=session["nom"],
+        mot_indice=mot_indice,
+        vies=session["vies"],
+        message=message,
+        lettres_jouees=session["lettres_jouees"]
+    )
+   
